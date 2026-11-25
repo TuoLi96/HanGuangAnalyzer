@@ -1,0 +1,80 @@
+{
+    "state": ["Freed", "UAF"],
+    "action": {
+        "Call_Free" : [
+            {
+                "func_name" : "free",
+                "arg_idx" : 0
+            },
+            {
+                "func_name" : "kmem_cache_free",
+                "arg_idx" : 1
+            },
+            {
+                "func_name" : "kfree",
+                "arg_idx" : 0
+            },
+            {
+                "func_name" : "kvfree",
+                "arg_idx" : 0
+            },
+            {
+                "func_name" : "kvfree_atomic",
+                "arg_idx" : 0
+            },
+            {
+                "func_name" : "kvfree_sensitive",
+                "arg_idx" : 0
+            },
+            {
+                "func_name" : "kfree_const",
+                "arg_idx" : 0
+            },
+            {
+                "func_name" : "vfree",
+                "arg_idx" : 0
+            }
+        ],
+		"Use" : []
+    },
+    "transition" : [
+        {
+            "curr_state" : "Any",
+            "act" : "Call_Free",
+            "next_state" : "Freed"
+        },
+		{
+			"curr_state" : "Freed",
+			"act" : "Use",
+			"next_state" : "UAF"
+		}
+    ],
+    "bug" : {
+        "name" : "Use After Free",
+        "tbl" : "uaf",
+		"bug_desp" : "",
+        "key_actions" : [
+			{
+				"action" : "Call_Free",
+				"act_desp" : "Free [OBJ]"
+			},
+			{
+				"action" : "Use",
+				"act_desp" : "Use [OBJ]"
+			}
+		],
+        "bug_state" : "UAF"
+    },
+    "sliced_action" : ["Call_Free", "Use"],
+    "context" : {
+        "start_action" : "Call_Free",
+        "end_action" : "Use"
+    },
+    "merge" : [
+        {
+            "state1" : "Any",
+            "state2" : "Freed",
+            "merged_state" : "Freed"
+        }
+    ]
+}

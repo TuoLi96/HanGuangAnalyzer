@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS struct_def (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	src_file TEXT,
+	struct_name TEXT,
+	typedef_name TEXT,
+	start_line INTEGER,
+	end_line INTEGER,
+	start_byte INTEGER,
+	end_byte INTEGER,
+	UNIQUE (
+		src_file,
+		typedef_name,
+		struct_name,
+		start_byte)
+);

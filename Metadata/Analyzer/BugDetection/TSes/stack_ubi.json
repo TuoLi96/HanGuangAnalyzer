@@ -1,0 +1,74 @@
+{
+    "state": ["Init", "HeapRef", "Uninit", "SUBI"],
+    "action": {
+        "CallInit" : [],
+		"Alloca" : [],
+        "Store" : [],
+        "Access" : []
+    },
+    "transition" : [
+        {
+            "curr_state" : "Any",
+            "act" : "CallInit",
+            "next_state" : "Init"
+        },
+        {
+            "curr_state" : "Any",
+            "act" : "Store",
+            "next_state" : "Init"
+        },
+		{
+			"curr_state" : "Any",
+			"act" : "Alloca",
+			"next_state" : "HeapRef"
+		},
+        {
+			"curr_state" : "Uninit",
+			"act" : "Access",
+			"next_state" : "SUBI"
+		}
+    ],
+    "propagate" : [
+        {
+            "parent_state" : "Uninit",
+            "child_state" : "Uninit"
+        },
+        {
+            "parent_state" : "HeapRef",
+            "child_state" : "Uninit"
+        }
+    ],
+    "bug" : {
+        "name" : "Stack Use Before Initialization",
+        "tbl" : "subi",
+		"bug_desp" : "This bug is caused by reading stack memory before it is initialized.",
+        "key_actions" : [
+			{
+				"action" : "Alloca",
+				"act_desp" : "Alloca [OBJ]"
+			},
+			{
+				"action" : "Access",
+				"act_desp" : "Access [OBJ]"
+			}
+		],
+        "bug_state" : "SUBI"
+    },
+    "sliced_action" : ["Alloca", "CallInit", "Store", "Access"],
+    "context" : {
+        "start_action" : "Alloca",
+        "end_action" : "Access"
+    },
+    "merge" : [
+        {
+            "state1" : "Any",
+            "state2" : "Uninit",
+            "merged_state" : "Uninit"
+        },
+        {
+            "state1" : "Init",
+            "state2" : "Init",
+            "merged_state" : "Init"
+        }
+    ]
+}

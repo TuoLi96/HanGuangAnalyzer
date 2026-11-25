@@ -1,0 +1,24 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_macro_def",
+    "description": "Retrieve the definition of a macro, including its line numbers, from the specified source file (.c or .h). The macro_name must be related to src_file: it must be defined, used, or referenced in the specified file. Do not query unrelated macros.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "macro_name": {
+          "type": "string",
+          "description": "The name of the macro to retrieve. It must appear in or be referenced by src_file."
+        },
+        "src_file": {
+          "type": "string",
+          "description": "The source file where macro_name is defined, used, or referenced."
+        }
+      },
+      "required": [
+        "macro_name",
+        "src_file"
+      ]
+    }
+  }
+}

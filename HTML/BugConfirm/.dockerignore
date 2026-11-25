@@ -1,0 +1,6 @@
+data/
+.bugconfirm.*
+node_modules/
+*.log
+README.md
+docker.sh

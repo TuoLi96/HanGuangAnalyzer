@@ -1,0 +1,19 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_doc",
+    "description": "Retrieve the kernel documentation for a given symbol, such as a function, variable, macro, struct, or type.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "symbol_name": {
+          "type": "string",
+          "description": "The name of the kernel symbol to look up."
+        }
+      },
+      "required": [
+        "symbol_name"
+      ]
+    }
+  }
+}

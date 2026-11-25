@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hanguang"
+version = "1.0.0"
+description = "HanGuang: Static Analysis and LLM-assisted Bug Detection"
+requires-python = ">=3.9"
+dependencies = []
+
+
+# ============================================================
+# Command-line applications
+# ============================================================
+
+[project.scripts]
+
+# Knowledge
+hg-collect-sym-def = "HG.Knowledge.app.collect_sym_def:main"
+hg-collect-doc = "HG.Knowledge.app.collect_doc:main"
+
+# Agent-ts
+hg-collect-ts-tasks = "HG.Agent.app.BugDetection.TypeState.collect_ts_tasks:main"
+hg-verify-ts = "HG.Agent.app.BugDetection.TypeState.verify_ts:main"
+
+# ============================================================
+# Python packages
+# ============================================================
+
+[tool.setuptools]
+
+packages = [
+    # --------------------------------------------------------
+    # Agent
+    # --------------------------------------------------------
+    "HG.Agent",
+    "HG.Agent.Base",
+    "HG.Agent.Base.Chat",
+    "HG.Agent.Base.BasicTool",
+
+    "HG.Agent.BugDetection",
+    "HG.Agent.BugDetection.BugTool",
+    "HG.Agent.BugDetection.TypeState",
+
+    "HG.Agent.app",
+    "HG.Agent.app.BugDetection",
+    "HG.Agent.app.BugDetection.TypeState",
+
+
+    # --------------------------------------------------------
+    # Analyzer
+    # --------------------------------------------------------
+    "HG.Analyzer",
+    "HG.Analyzer.TypeState",
+
+
+    # --------------------------------------------------------
+    # Common
+    # --------------------------------------------------------
+    "HG.Common.Database",
+    "HG.Common.Path",
+
+
+    # --------------------------------------------------------
+    # Frontend
+    # --------------------------------------------------------
+    "HG.Frontend",
+
+
+    # --------------------------------------------------------
+    # Knowledge
+    # --------------------------------------------------------
+    "HG.Knowledge",
+    "HG.Knowledge.SymMgr",
+    "HG.Knowledge.app",
+]
+
+
+# ============================================================
+# Package directory mapping
+# ============================================================
+
+[tool.setuptools.package-dir]
+
+# Agent
+"HG.Agent" = "Agent/lib"
+"HG.Agent.app" = "Agent/app"
+
+# Analyzer
+"HG.Analyzer" = "Analyzer/lib"
+
+# Common
+"HG.Common.Database" = "Common/lib/Database"
+"HG.Common.Path" = "Common/lib/Path"
+
+# Frontend
+"HG.Frontend" = "Frontend/lib"
+
+# Knowledge
+"HG.Knowledge" = "Knowledge/lib"
+"HG.Knowledge.app" = "Knowledge/app"
+

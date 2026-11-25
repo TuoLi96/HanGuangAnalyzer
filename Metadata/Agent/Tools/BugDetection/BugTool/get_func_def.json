@@ -1,0 +1,24 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_func_def",
+    "description": "Retrieve the full function definition, including line numbers, from the specified source file. The func_name must be related to src_file: it must be defined, declared, called, or referenced in the specified file. Do not query unrelated functions.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "func_name": {
+          "type": "string",
+          "description": "Function name that must appear or be referenced in src_file."
+        },
+        "src_file": {
+          "type": "string",
+          "description": "Source file that contains or references func_name."
+        }
+      },
+      "required": [
+        "func_name",
+        "src_file"
+      ]
+    }
+  }
+}

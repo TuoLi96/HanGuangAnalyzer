@@ -1,0 +1,26 @@
+{
+	"get_func_def" : {
+		"enable" : true
+	},
+	"get_func_use" : {
+		"enable" : true
+	},
+	"get_macro_def" : {
+		"enable" : true
+	},
+	"get_gvar_def" : {
+		"enable" : true
+	},
+	"get_struct_def" : {
+		"enable" : true
+	},
+	"get_doc" : {
+		"enable" : true
+	},
+	"search_text" : {
+		"enable" : false
+	},
+	"read_file" : {
+		"enable" : false
+	}
+}

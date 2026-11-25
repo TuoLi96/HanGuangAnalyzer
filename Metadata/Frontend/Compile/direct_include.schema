@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS direct_include (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	main_file TEXT,
+	include_file TEXT,
+	UNIQUE (
+		main_file,
+        include_file)
+);

@@ -1,0 +1,22 @@
+{
+	"ret_npd" : {
+		"enable" : true,
+		"scope" : "inter"
+	},
+	"indirect_npd" : {
+		"enable" : true,
+		"scope" : "inter"
+	},
+	"uaf" : {
+		"enable" : true,
+		"scope" : "inter"
+	},
+	"stack_ubi" : {
+		"enable" : true,
+		"scope" : "inter"
+	},
+	"heap_ubi" : {
+		"enable" : true,
+		"scope" : "inter"
+	}
+}

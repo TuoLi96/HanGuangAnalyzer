@@ -1,0 +1,25 @@
+{
+  "type": "function",
+  "function": {
+    "name": "read_file",
+    "description": "Read a file and return its contents with line numbers.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "File path."
+        },
+        "start_line": {
+          "type": "integer",
+          "description": "Starting line number, inclusive. Defaults to 1."
+        },
+        "end_line": {
+          "type": ["integer", "null"],
+          "description": "Ending line number, inclusive. Defaults to null (end of file)."
+        }
+      },
+      "required": ["path"]
+    }
+  }
+}

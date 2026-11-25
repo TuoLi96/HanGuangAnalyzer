@@ -1,0 +1,26 @@
+{
+  "type": "function",
+  "function": {
+    "name": "dump_ts_summary",
+    "description": "Write an analysis summary to a specified local file.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "integer",
+          "description": "The original ID of the suspicious race. You should extract the ID from the task."
+        },
+        "conclusion": {
+          "type": "boolean",
+          "description": "Indicates whether the bug is real."
+        },
+        "summary": {
+          "type": "string",
+          "description": "Analysis summary content describing evidence, reasoning, and final decision."
+        }
+      },
+      "required": ["task_id", "conclusion", "summary"]
+    }
+  }
+}
+

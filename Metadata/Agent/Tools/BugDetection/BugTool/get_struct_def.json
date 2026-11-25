@@ -1,0 +1,24 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_struct_def",
+    "description": "Retrieve the definition of a struct type, including its line numbers, from the specified source file (.c or .h). The struct_name must be related to src_file: it must be defined, declared, used, or referenced in the specified file. Do not query unrelated struct types.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "struct_name": {
+          "type": "string",
+          "description": "The name of the struct type to retrieve. It must appear in or be referenced by src_file."
+        },
+        "src_file": {
+          "type": "string",
+          "description": "The source file where struct_name is defined, declared, used, or referenced."
+        }
+      },
+      "required": [
+        "struct_name",
+        "src_file"
+      ]
+    }
+  }
+}

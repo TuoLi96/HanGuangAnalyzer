@@ -1,0 +1,58 @@
+{
+    "state": ["Null", "NonNull", "NPD"],
+    "action": {
+        "Ret_Null" : ["malloc", "kmalloc", "kzalloc", "kcalloc", "kmalloc_array", "vmalloc", "vzalloc", "vmalloc_array", "kmem_cache_alloc", "alloc_pages", "dma_alloc_coherent", "devm_kcalloc"],
+		"BrNonNull" : [],
+		"Ref" : []
+    },
+    "transition" : [
+        {
+            "curr_state" : "Any",
+            "act" : "Ret_Null",
+            "next_state" : "Null"
+        },
+		{
+			"curr_state" : "Any",
+			"act" : "BrNonNull",
+			"next_state" : "NonNull"
+		},
+        {
+            "curr_state" : "Null",
+            "act" : "Ref",
+            "next_state" : "NPD"
+        }
+    ],
+    "bug" : {
+        "name" : "Return NPD",
+        "tbl" : "ret_npd",
+		"bug_desp" : "This bug is caused by dereferencing a pointer returned by an API that may return NULL without a NULL check.",
+        "key_actions" : [
+			{
+				"action" : "Ret_Null",
+				"act_desp" : "Return NULL"
+			},
+			{
+				"action" : "Ref",
+				"act_desp" : "Dereference [OBJ]"
+			}
+		],
+        "bug_state" : "NPD"
+    },
+    "sliced_action" : ["Ret_Null", "BrNonNull", "Ref"],
+	"context" : {
+        "start_action" : "Ret_Null",
+        "end_action" : "Ref"
+    },
+    "merge" : [
+        {
+            "state1" : "Any",
+            "state2" : "Null",
+            "merged_state" : "Null"
+        },
+        {
+            "state1" : "NonNull",
+            "state2" : "NonNull",
+            "merged_state" : "NonNull"
+        }
+    ]
+}

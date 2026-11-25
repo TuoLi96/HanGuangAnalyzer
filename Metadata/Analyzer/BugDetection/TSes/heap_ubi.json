@@ -1,0 +1,75 @@
+{
+    "state": ["Init", "HeapRef", "Uninit", "HUBI"],
+    "action": {
+        "Ret_Alloca" : ["malloc", "kmalloc", "kmalloc_array", "vmalloc"],
+        "CallInit" : [],
+		"Access" : [],
+        "Store" : [],
+        "Inherient" : []
+    },
+    "transition" : [
+        {
+            "curr_state" : "Any",
+            "act" : "CallInit",
+            "next_state" : "Init"
+        },
+        {
+            "curr_state" : "Any",
+            "act" : "Store",
+            "next_state" : "Init"
+        },
+		{
+			"curr_state" : "Any",
+			"act" : "Ret_Alloca",
+			"next_state" : "HeapRef"
+		},
+        {
+			"curr_state" : "Uninit",
+			"act" : "Access",
+			"next_state" : "HUBI"
+		}
+    ],
+    "propagate" : [
+        {
+            "parent_state" : "Uninit",
+            "child_state" : "Uninit"
+        },
+        {
+            "parent_state" : "HeapRef",
+            "child_state" : "Uninit"
+        }
+    ],
+    "bug" : {
+        "name" : "Heap Use Before Initialization",
+        "tbl" : "hubi",
+		"bug_desp" : "This bug is caused by reading heap memory before it is initialized.",
+        "key_actions" : [
+			{
+				"action" : "Ret_Alloca",
+				"act_desp" : "Alloca a heap memory"
+			},
+			{
+				"action" : "Access",
+				"act_desp" : "Access [OBJ]"
+			}
+		],
+        "bug_state" : "HUBI"
+    },
+    "sliced_action" : ["Ret_Alloca", "CallInit", "Store", "Access"],
+    "context" : {
+        "start_action" : "Ret_Alloca",
+        "end_action" : "Access"
+    },
+    "merge" : [
+        {
+            "state1" : "Any",
+            "state2" : "Uninit",
+            "merged_state" : "Uninit"
+        },
+        {
+            "state1" : "Init",
+            "state2" : "Init",
+            "merged_state" : "Init"
+        }
+    ]
+}

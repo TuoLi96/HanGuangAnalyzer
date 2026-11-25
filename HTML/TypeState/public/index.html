@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeState Review Desk</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark">TS</div>
+        <div>
+          <div class="brand-name">TypeState Review Desk</div>
+          <div class="brand-subtitle">Linux patch · 状态机审阅工作台</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="local-badge"><span class="pulse"></span>仅本机可见</span>
+        <button class="button button-primary" id="saveAllButton" type="button"><span>↳</span> 同步到本地</button>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="sidebar-intro">
+          <div class="eyebrow">REVIEW QUEUE</div>
+          <h1>补丁清单</h1>
+          <p>从 commit 出发，核对修复逻辑与 typestate。</p>
+        </div>
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="搜索 commit、文件、函数…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <nav class="status-nav" id="statusNav" aria-label="状态筛选">
+          <button class="status-filter active" data-status="all"><span class="nav-dot all"></span><span>全部 patch</span><strong id="countAll">—</strong></button>
+          <button class="status-filter" data-status="pending"><span class="nav-dot pending"></span><span>待审核</span><strong id="countPending">—</strong></button>
+          <button class="status-filter" data-status="correct"><span class="nav-dot correct"></span><span>正确</span><strong id="countCorrect">—</strong></button>
+          <button class="status-filter" data-status="wrong"><span class="nav-dot wrong"></span><span>错误</span><strong id="countWrong">—</strong></button>
+          <button class="status-filter" data-status="reviewed"><span class="nav-dot reviewed"></span><span>已审核</span><strong id="countReviewed">—</strong></button>
+          <button class="status-filter" data-status="modified"><span class="nav-dot modified"></span><span>已修改</span><strong id="countModified">—</strong></button>
+        </nav>
+        <div class="sidebar-foot">
+          <label class="type-filter-row"><span>Typestate</span><select id="typestateFilter" aria-label="Typestate 筛选"><option value="all">全部</option><option value="yes">已有 typestate</option><option value="no">没有 typestate</option></select></label>
+          <div class="dataset-note"><span class="dataset-icon">◇</span><div><strong id="datasetCount">—</strong><span>条 patch 数据</span></div></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-illustration">⌁</div>
+          <h2>选择一条 patch 开始</h2>
+          <p>左侧列表中选择 commit，右侧会同时载入 patch 内容和 typestate。</p>
+        </div>
+
+        <section id="detailView" class="detail-view hidden">
+          <div class="detail-heading">
+            <div class="heading-main">
+              <div class="breadcrumb"><span>PATCHES</span><i>/</i><span id="headingCommit">—</span></div>
+              <h2 id="headingTitle">—</h2>
+              <div class="heading-meta"><span id="headingFile">—</span><span class="meta-separator">·</span><span id="headingFunction">—</span></div>
+            </div>
+            <div class="heading-actions">
+              <select id="statusSelect" class="status-select" aria-label="patch 审核状态">
+                <option value="pending">待审核</option>
+                <option value="correct">正确</option>
+                <option value="wrong">错误</option>
+                <option value="reviewed">已审核</option>
+                <option value="modified">已修改</option>
+              </select>
+              <button class="icon-button" id="copyCommitButton" title="复制 commit" type="button">⧉</button>
+            </div>
+          </div>
+
+          <div class="summary-strip">
+            <div class="summary-card"><span class="summary-label">版本窗口</span><strong><span id="badVersion">—</span><b> → </b><span id="goodVersion">—</span></strong><small id="midVersion">中间版本 —</small></div>
+            <div class="summary-card"><span class="summary-label">Bug 类型</span><div class="tag-list" id="bugTypes"></div></div>
+            <div class="summary-card"><span class="summary-label">Typestate</span><strong id="tsSummary">—</strong><small id="tsSummaryNote">—</small></div>
+            <div class="summary-card review-note-card"><span class="summary-label">审核备注</span><input id="reviewNote" type="text" placeholder="记录判断依据…" /></div>
+          </div>
+
+          <div class="editor-grid">
+            <section class="panel patch-panel">
+              <div class="panel-header">
+                <div><span class="panel-kicker">SOURCE MATERIAL</span><h3>Patch 内容</h3></div>
+                <span class="edit-hint">可编辑</span>
+              </div>
+              <div class="field-stack">
+                <label class="field-label">Commit message<textarea id="descriptionInput" class="text-input description-input" spellcheck="false"></textarea></label>
+                <label class="field-label">Unified diff<textarea id="diffInput" class="code-input diff-input" spellcheck="false"></textarea></label>
+                <details class="advanced-details">
+                  <summary>代码上下文与元数据 <span>展开编辑</span></summary>
+                  <div class="advanced-grid">
+                    <label class="field-label">文件<input id="fileInput" class="text-input" /></label>
+                    <label class="field-label">函数<input id="functionInput" class="text-input" /></label>
+                    <label class="field-label">坏版本<input id="badVersionInput" class="text-input" /></label>
+                    <label class="field-label">中间版本<input id="midVersionInput" class="text-input" /></label>
+                    <label class="field-label">好版本<input id="goodVersionInput" class="text-input" /></label>
+                    <label class="field-label">中间位置<input id="midPositionInput" class="text-input" /></label>
+                    <label class="field-label full">Bug 类型（每行一个）<textarea id="bugTypeInput" class="text-input compact-input"></textarea></label>
+                    <label class="field-label full">Fixes（每行一个）<textarea id="fixesInput" class="text-input compact-input"></textarea></label>
+                    <label class="field-label full">Before code<textarea id="beforeCodeInput" class="code-input context-input" spellcheck="false"></textarea></label>
+                    <label class="field-label full">Mid code<textarea id="midCodeInput" class="code-input context-input" spellcheck="false"></textarea></label>
+                    <label class="field-label full">After code<textarea id="afterCodeInput" class="code-input context-input" spellcheck="false"></textarea></label>
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            <section class="panel typestate-panel">
+              <div class="panel-header">
+                <div><span class="panel-kicker">EXTRACTED MODEL</span><h3>Typestate</h3></div>
+                <div class="panel-actions"><span class="edit-hint" id="tsEditHint">JSON 可编辑</span><button class="small-button" id="newTsButton" type="button">＋ 新建</button></div>
+              </div>
+              <div class="ts-layout">
+                <div class="json-editor-wrap">
+                  <textarea id="tsInput" class="json-editor" spellcheck="false" aria-label="Typestate JSON 编辑器"></textarea>
+                  <div class="json-status" id="jsonStatus">—</div>
+                </div>
+                <div class="graph-wrap">
+                  <div class="graph-toolbar"><span>状态转移图</span><span class="graph-legend"><i class="legend-dot start"></i>起点 <i class="legend-dot bug"></i>Bug 状态</span></div>
+                  <div class="graph-canvas" id="graphCanvas"><div class="graph-placeholder">输入有效 typestate JSON<br />这里会实时生成状态图</div></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

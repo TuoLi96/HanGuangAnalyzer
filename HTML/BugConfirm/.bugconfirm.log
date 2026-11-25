@@ -1,0 +1,97 @@
+BugConfirm is running at http://127.0.0.1:8799 (localhost only)
+BugConfirm is running at http://127.0.0.1:8800 (localhost only)
+BugConfirm is running at http://127.0.0.1:8801 (localhost only)
+BugConfirm is running at http://127.0.0.1:8802 (localhost only)
+BugConfirm is running at http://127.0.0.1:8803 (localhost only)
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+Error: ENOSPC: no space left on device, write
+    at Object.writeFileSync (node:fs:2398:20)
+    at saveLabels (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:173:6)
+    at api (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:307:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Server.<anonymous> (/home/lituo/Work/HanGuang/HTML/BugConfirm/server.js:329:50) {
+  errno: -28,
+  code: 'ENOSPC',
+  syscall: 'write'
+}
+BugConfirm is running at http://127.0.0.1:8803 (localhost only)
+BugConfirm is running at http://127.0.0.1:8804 (localhost only)
+BugConfirm is running at http://127.0.0.1:8786 (localhost only)
+BugConfirm is running at http://127.0.0.1:8787 (localhost only)
+BugConfirm is running at http://127.0.0.1:8788 (localhost only)
+BugConfirm is running at http://127.0.0.1:8789 (localhost only)
+BugConfirm is running at http://127.0.0.1:8790 (localhost only)
+BugConfirm is running at http://127.0.0.1:8790 (localhost only)
+BugConfirm is running at http://127.0.0.1:8790 (localhost only)
+BugConfirm is running at http://127.0.0.1:8791 (localhost only)
+BugConfirm is running at http://127.0.0.1:8810 (localhost only)
+BugConfirm is running at http://127.0.0.1:8798 (localhost only)

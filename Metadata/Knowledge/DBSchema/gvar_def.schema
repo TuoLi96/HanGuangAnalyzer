@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS gvar_def (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	src_file TEXT,
+	gvar_name TEXT,
+	gvar_type TEXT,
+    is_static INTEGER,
+	start_line INTEGER,
+	end_line INTEGER,
+	start_byte INTEGER,
+	end_byte INTEGER,
+	UNIQUE (
+		src_file,
+		gvar_name,
+		gvar_type,
+        is_static,
+		start_byte)
+);

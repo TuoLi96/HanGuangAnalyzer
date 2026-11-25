@@ -1,0 +1,9 @@
+{
+  "name": "bug-confirm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local review workspace for TypeState agent verification results",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

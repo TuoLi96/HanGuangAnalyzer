@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BugConfirm</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1930'/%3E%3Cpath d='M9 10h14v12H9z' fill='%2338bdf8'/%3E%3Cpath d='M13 7v4m6-4v4M13 16h6' stroke='%230c1930' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><p class="eyebrow">LOCAL REVIEW WORKSPACE</p><h1>BugConfirm</h1></div>
+    <div class="actions"><button id="reload" class="secondary">Reload source data</button><span id="connection" class="connection">Loading</span></div>
+  </header>
+  <main>
+    <section class="metrics" id="metrics" aria-label="Verification statistics"></section>
+    <section class="workspace">
+      <aside class="sidebar">
+        <div class="filter-head"><h2>Static-analysis bugs</h2><span id="total" class="count"></span></div>
+        <label class="search"><span>Search bugs</span><input id="search" type="search" placeholder="ID, type, location…"></label>
+        <label class="search"><span>Filter by phase tag</span><input id="tag-filter" type="search" placeholder="e.g. missing check"></label>
+        <section class="type-filter" aria-labelledby="type-filter-title">
+          <div class="type-filter-head"><span id="type-filter-title">Bug types</span><div><button id="type-select-all" class="filter-action" type="button">All</button><button id="type-clear" class="filter-action" type="button">Clear</button></div></div>
+          <div id="type-options" class="type-options" aria-live="polite"><span class="muted">Loading bug types…</span></div>
+        </section>
+        <div class="filters" role="group" aria-label="Filters">
+          <label>Agent result<select id="verified"><option value="all">All results</option><option value="true">Verified true</option><option value="false">Verified false</option><option value="unverified">Not verified yet</option></select></label>
+          <label>Manual label<select id="label"><option value="all">All labels</option><option value="unreviewed">Unreviewed</option><option value="real">Real bug</option><option value="not_real">Not a bug</option><option value="unsure">Unsure</option></select></label>
+          <label>Fix status<select id="fixed"><option value="all">All</option><option value="true">Fixed</option><option value="false">Not fixed</option></select></label>
+          <label>Reported phase<select id="reported-phase-filter"><option value="all">All phases</option><option value="Not Reported">Not Reported</option><option value="Reported">Reported</option><option value="Submitted">Submitted</option><option value="Confirmed">Confirmed</option><option value="Accepted">Accepted</option></select></label>
+          <label>Grouping<select id="group-by"><option value="type">Bug type</option><option value="none">No grouping</option></select></label>
+        </div>
+        <div id="list" class="bug-list" aria-live="polite"></div>
+        <nav class="pagination"><label>Per page<select id="page-size"><option value="20">20</option><option value="50">50</option><option value="100">100</option><option value="200">200</option></select></label><button id="prev" class="secondary">Previous</button><span id="page-info"></span><button id="next" class="secondary">Next</button></nav>
+      </aside>
+      <section class="detail" id="detail"><div class="empty"><h2>Select a bug</h2><p>Choose a static-analysis result to inspect its source details, available agent analysis, and add your review.</p></div></section>
+    </section>
+  </main>
+  <template id="metric-template"><article class="metric"><strong></strong><span></span></article></template>
+  <datalist id="known-static-tags"></datalist>
+  <datalist id="known-llm-tags"></datalist>
+  <datalist id="known-security-tags"></datalist>
+  <script src="app.js"></script>
+</body>
+</html>

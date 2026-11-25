@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS chat (
+	id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	chat_id INTEGER,
+	chat_rnd INTEGER,
+	role TEXT,
+	content TEXT,
+	tool_id TEXT,
+	thinking_text TEXT,
+	tool_calls TEXT,
+	in_tok INTEGER,
+	out_tok INTEGER,
+	total_tok INTEGER,
+	cached_tok INTEGER,
+	UNIQUE (chat_id, 
+		chat_rnd)
+);

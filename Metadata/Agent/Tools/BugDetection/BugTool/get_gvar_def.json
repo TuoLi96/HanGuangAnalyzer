@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_gvar_def",
+    "description": "Retrieve the definition of a global variable whose type is a struct, including its line numbers, from the specified source file (.c or .h). The gvar_name must be related to src_file: it must be defined, declared, referenced, or used in the specified file. Do not query unrelated global variables.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "gvar_name": {
+          "type": "string",
+          "description": "The name of the target global variable. It must appear in or be referenced by src_file."
+        },
+        "src_file": {
+          "type": "string",
+          "description": "The source file where gvar_name is defined, declared, referenced, or used."
+        }
+      },
+      "required": ["gvar_name", "src_file"]
+    }
+  }
+}

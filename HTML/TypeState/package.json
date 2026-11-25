@@ -1,0 +1,9 @@
+{
+  "name": "typestate-review",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local patch and typestate review workspace",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

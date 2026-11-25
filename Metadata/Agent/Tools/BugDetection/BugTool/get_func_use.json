@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_func_use",
+    "description": "Retrieve all use locations corresponding to a specified function and its definition source file (.c or .h).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "func_name": {
+          "type": "string",
+          "description": "The name of the specified function."
+        },
+        "src_file": {
+          "type": "string",
+          "description": "Path of the source file in which the function with the name func_name is defined."
+        }
+      },
+      "required": ["func_name", "src_file"]
+    }
+  }
+}

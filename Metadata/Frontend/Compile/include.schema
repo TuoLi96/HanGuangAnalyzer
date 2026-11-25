@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS include (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	main_file TEXT,
+	include_files TEXT,
+	UNIQUE (
+		main_file)
+);

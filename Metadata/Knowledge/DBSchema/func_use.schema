@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS func_use (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	src_file TEXT,
+	func_name TEXT,
+	use_file TEXT,
+	use_info TEXT,
+	use_type TEXT,
+	UNIQUE (
+		src_file,
+		func_name,
+		use_file,
+        use_info,
+		use_type)
+);

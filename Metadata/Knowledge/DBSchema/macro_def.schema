@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS macro_def (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	src_file TEXT,
+	macro_name TEXT,
+	start_line INTEGER,
+	end_line INTEGER,
+	start_byte INTEGER,
+	end_byte INTEGER,
+	UNIQUE (
+		src_file,
+		macro_name,
+		start_byte)
+);

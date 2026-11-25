@@ -1,0 +1,58 @@
+{
+    "state": ["Null", "NonNull", "NPD"],
+    "action": {
+        "BrNull" : [],
+		"BrNonNull" : [],
+		"Ref" : []
+    },
+    "transition" : [
+        {
+            "curr_state" : "Any",
+            "act" : "BrNull",
+            "next_state" : "Null"
+        },
+		{
+			"curr_state" : "Any",
+			"act" : "BrNonNull",
+			"next_state" : "NonNull"
+		},
+        {
+            "curr_state" : "Null",
+            "act" : "Ref",
+            "next_state" : "NPD"
+        }
+    ],
+    "bug" : {
+        "name" : "Indirect NPD",
+        "tbl" : "indirect_npd",
+		"bug_desp" : "This bug is caused by dereferencing a pointer on a branch where an if-condition has established that the pointer is NULL. This bug pattern requires careful examination of whether the pointer can actually be NULL and whether the Linux kernel design and runtime conditions satisfy the requirements for triggering this bug.",
+        "key_actions" : [
+			{
+				"action" : "BrNull",
+				"act_desp" : "[OBJ] is checked to be NULL"
+			},
+			{
+				"action" : "Ref",
+				"act_desp" : "Dereference [OBJ]"
+			}
+		],
+        "bug_state" : "NPD"
+    },
+    "sliced_action" : ["BrNull", "BrNonNull", "Ref"],
+	"context" : {
+        "start_action" : "BrNull",
+        "end_action" : "Ref"
+    },
+    "merge" : [
+        {
+            "state1" : "Any",
+            "state2" : "Null",
+            "merged_state" : "Null"
+        },
+        {
+            "state1" : "NonNull",
+            "state2" : "NonNull",
+            "merged_state" : "NonNull"
+        }
+    ]
+}
