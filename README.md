@@ -81,6 +81,12 @@ docker run -it --rm \
 
 The script loads the HanGuang Docker image and starts the container, mounting the host's `workdir` directory at `/workdir` inside the container.
 
+**Alternative Docker Image (Huawei Cloud):**
+
+```bash
+docker pull swr.cn-east-3.myhuaweicloud.com/tuoli96/hanguang:v1
+```
+
 ### 4. Run Static Analysis
 
 Inside the Docker container, compile the Linux kernel and run static analysis:
