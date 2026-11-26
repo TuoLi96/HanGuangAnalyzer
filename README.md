@@ -133,5 +133,10 @@ This project accompanies the following research paper:
 
 The paper presents the design and implementation of HanGuang (KernelSleuth), a typestate-guided agent that leverages multi-dimensional kernel knowledge for cost-effective Linux kernel bug detection.
 
+## Related Links
+- **GitHub:** [HanGuangAnalyzer](https://github.com/TuoLi96/HanGuangAnalyzer)
+- **Docker:** [HanGuang](https://hub.docker.com/repository/docker/tuoli96/hanguang)
+- **Contact:** [islituo@163.com](mailto:islituo@163.com)
+
 
 
